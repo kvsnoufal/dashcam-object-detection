@@ -1,0 +1,23 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/ubuntu
+{
+	"name": "detectron2 docker",
+	"context": "..",
+	"dockerFile": "./Dockerfile",
+	"settings": {
+		"terminal.integrated.shell.linux": null
+	},
+	"extensions": [
+		"ms-python.python"
+	],
+	// This was added!
+	"runArgs": [
+		"--gpus=all",
+		"--shm-size=2g",
+		"--net", "host", 
+        "-e", "DISPLAY=${env:DISPLAY}",
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+		"--device","/dev/video0:/dev/video0"
+		
+	]
+}
